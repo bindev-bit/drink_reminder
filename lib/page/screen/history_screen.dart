@@ -65,7 +65,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
         physics: BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: snapshot.data
+          children: [
+            ...snapshot.data
               .map(
                 (e) => StreamBuilder<DrinkDailyModel>(
                   stream: Stream.fromFuture(drinkController.drinkDaily(e.date)),
@@ -91,8 +92,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
                             padding: EdgeInsets.only(left: 20),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: drink.data.listDrink
-                                  .map(
+                              children: [
+                                ...drink.data.listDrink.map(
                                     (listDrink) => ListTile(
                                       title: Text(listDrink.time),
                                       leading: Icon(Icons.access_time),
@@ -104,8 +105,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                         ),
                                       ),
                                     ),
-                                  )
-                                  .toList(),
+                                  ),
+                                ],
                             ),
                           )
                         ],
@@ -113,8 +114,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     }
                   },
                 ),
-              )
-              .toList(),
+              ),
+          ],
         ),
       ),
     );
